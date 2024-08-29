@@ -4,6 +4,8 @@ import android.app.Notification
 import android.content.Intent
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
+import android.util.Log
+import dev.aptewicz.simple_notifications_listener.simple_notifications_listener.SimpleNotificationsListenerPlugin.Companion.TAG
 
 
 class NotificationListener : NotificationListenerService() {
@@ -25,6 +27,7 @@ class NotificationListener : NotificationListenerService() {
             intent.putExtra(NOTIFICATION_TITLE, title.toString())
             intent.putExtra(NOTIFICATION_MESSAGE, text.toString())
         }
+        Log.d(TAG, "received notification: $notification")
         sendBroadcast(intent)
     }
 

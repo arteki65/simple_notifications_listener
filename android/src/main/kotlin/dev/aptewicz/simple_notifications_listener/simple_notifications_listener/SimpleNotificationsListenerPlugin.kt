@@ -21,7 +21,7 @@ class SimpleNotificationsListenerPlugin: FlutterPlugin, EventChannel.StreamHandl
   /// when the Flutter Engine is detached from the Activity
 
   companion object {
-    private const val TAG: String = "NotificationsPlugin"
+    const val TAG: String = "NotificationsPlugin"
   }
 
   private lateinit var eventChannel: EventChannel
