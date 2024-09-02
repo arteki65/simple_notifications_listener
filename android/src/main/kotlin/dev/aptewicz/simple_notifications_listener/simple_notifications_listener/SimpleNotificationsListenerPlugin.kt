@@ -1,12 +1,15 @@
 package dev.aptewicz.simple_notifications_listener.simple_notifications_listener
 
+import android.Manifest
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.provider.Settings
 import android.text.TextUtils
 import android.util.Log
+import androidx.core.app.ActivityCompat
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.FlutterPlugin.FlutterPluginBinding
 import io.flutter.plugin.common.EventChannel
@@ -67,6 +70,12 @@ class SimpleNotificationsListenerPlugin: FlutterPlugin, EventChannel.StreamHandl
 
     /// Get context
     context = flutterPluginBinding.applicationContext
+
+    val permissionGranted = ActivityCompat.checkSelfPermission(
+        flutterPluginBinding.applicationContext,
+        Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE
+      ) == PackageManager.PERMISSION_GRANTED
+    Log.d(TAG, "is BIND_NOTIFICATION_LISTENER_SERVICE permission granted: $permissionGranted")
   }
 
   override fun onDetachedFromEngine(binding: FlutterPluginBinding) {
